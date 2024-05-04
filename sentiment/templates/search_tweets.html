@@ -1,0 +1,20 @@
+
+
+{% block content %}
+<form method="get" action="{% url 'sentiment:search_tweets' %}">
+    <input type="text" name="q" placeholder="Enter a word..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if query %}
+    <h2>Sentiment Analysis Results for "{{ query }}":</h2>
+    <ul>
+        <li>All: {{ total_sentiments }}</li>
+        <li>Positive: {{ sentiment_counts.Positive }}</li>
+        <li>Negative: {{ sentiment_counts.Negative }}</li>
+        <li>Neutral: {{ sentiment_counts.Neutral }}</li>
+    </ul>
+{% else %}
+    <p>Enter a keyword to perform sentiment analysis on related tweets.</p>
+{% endif %}
+{% endblock %}
