@@ -12,7 +12,7 @@ from collections import Counter
 from .preprocces import shakl, alif
 
 # Load the model and vocabulary from the saved files
-log_reg_model = load('logistic_regression_model.joblib')
+log_reg_model = load('logistic_regression_model0.joblib')
 vocab_dict = load('vocab_dict.joblib')
 
 

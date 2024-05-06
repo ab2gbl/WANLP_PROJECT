@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import Sentiment_Typed_Tweet_analyse_form
-from .sentiment_analysis_code import sentiment_analysis_code
+from .sentiment_analysis_code1 import sentiment_analysis_code
 from .forms import Sentiment_Imported_Tweet_analyse_form
 from .tweepy_sentiment import Import_tweet_sentiment
 from collections import Counter

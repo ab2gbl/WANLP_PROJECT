@@ -3,18 +3,13 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 from joblib import dump
 from pyarabic.araby import strip_tashkeel, tokenize
-#from tashaphyne.stemming import ArabicLightStemmer
 
 def preprocess_text(text):
     normalized_text = strip_tashkeel(text)
     tokens = tokenize(normalized_text)
-    
-    '''
-    stemmer = ArabicLightStemmer()
-    stemmed_tokens = [stemmer.light_stem(token) for token in tokens]
-    '''
     return ' '.join(tokens)  # return a single string of tokens
 
 class Command(BaseCommand):
@@ -39,12 +34,16 @@ class Command(BaseCommand):
         log_reg_model = LogisticRegression(max_iter=1000)
         log_reg_model.fit(X_train, y_train)
 
+        # Calculate accuracy on test set
+        y_pred = log_reg_model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+
         # Save the model and vocabulary using joblib
         dump(log_reg_model, 'logistic_regression_model.joblib')
         dump(vocab_dict, 'vocab_dict.joblib')
 
-        return log_reg_model, vocab_dict
+        return log_reg_model, vocab_dict, accuracy
 
     def handle(self, *args, **kwargs):
-        model, vocab = self.create_and_train_logistic_regression_model('./final.csv')
-        self.stdout.write(self.style.SUCCESS('Model trained and saved successfully!'))
+        model, vocab, accuracy = self.create_and_train_logistic_regression_model('./final.csv')
+        self.stdout.write(self.style.SUCCESS(f'Model trained and saved successfully! Accuracy: {accuracy:.2f}'))
