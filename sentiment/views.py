@@ -69,6 +69,8 @@ def sentiment_analysis_import(request):
 def search_tweets(request):
     query = request.GET.get('q', '')
     sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
+    total_sentiments = 0 
+    
     analyse = sentiment_analysis_code()
     if query:
         processed_query = preprocess_text(query)
