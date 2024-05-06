@@ -8,12 +8,11 @@ from collections import Counter
 
 from .models import Tweet
 from pyarabic.araby import strip_tashkeel, normalize_hamza
+from .preprocces import shakl, alif
 
 def preprocess_text(text):
-    # Normalize by removing diacritics
-    text = strip_tashkeel(text)
-    # Normalize different forms of hamza
-    text = normalize_hamza(text)
+    text = shakl(text)
+    text = alif(text)
     return text
 
     

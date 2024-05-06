@@ -7,8 +7,9 @@ import nltk
 from .models import create_and_train_svm_model
 from joblib import load
 
-from pyarabic.araby import strip_tashkeel, tokenize,normalize_hamza 
+from pyarabic.araby import tokenize
 from collections import Counter
+from .preprocces import shakl, alif
 
 # Load the model and vocabulary from the saved files
 log_reg_model = load('logistic_regression_model.joblib')
@@ -16,8 +17,8 @@ vocab_dict = load('vocab_dict.joblib')
 
 
 def preprocess_text(text):
-    normalized_text = strip_tashkeel(text)
-    normalized_text = normalize_hamza (text)
+    normalized_text = shakl(text)
+    normalized_text = alif (text)
     tokens = tokenize(normalized_text)
     return tokens  # return list of tokens
 
