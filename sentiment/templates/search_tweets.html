@@ -61,7 +61,8 @@
             <div class="col-7 mt-10 grid">
                 <div>
                     <h1 class="ftco-heading mb-3" data-aos="fade-up" data-aos-delay="500">Sentiment Overview</h1>
-                    <h2 class="h5 ftco-subheading mb-5" data-aos="fade-up"  data-aos-delay="600">Search about subject to import tweets abou it and do sentiment analysis</h2>
+                    <h2 class="h5 ftco-subheading" data-aos="fade-up"  data-aos-delay="600">Search about subject to import tweets abou it and do sentiment analysis</h2>
+                    {% if model != '' %} <h3 class="h3 ftco-subheading"> By {{model}} model</h3>{% endif %}
                     <div class="row">
                         {% if sentiment_counts.Positive > sentiment_counts.Negative %}
                             <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
@@ -91,6 +92,12 @@
                                 <form class="search" method="get" ction="{% url 'sentiment:search_tweets' %}">
                                     {% csrf_token %}
                                     <div class="a-field search__field">
+                                        <select name='model'>
+                                            <option value="Camel" >Camel</option>
+                                            <option value="Logistic Regression">Logistic Regression</option>
+                                            <option value="Rcnn">Rcnn</option>
+                                            <option value="Svm">Svm</option>
+                                        </select>
                                         <input type="text" id="sentiment_imported_tweet" name="q" class="r-text-field a-field__input search__input" placeholder="Enter a word..." value="{{ query }}" required>
                                         <label class="a-field__label-wrap search__hint" for="query"></label>        
                                     </div>

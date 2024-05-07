@@ -80,7 +80,13 @@
     <form class="search" method="post">
       {% csrf_token %}
       <div class="a-field search__field">
-        <input type="text" id="sentiment_typed_tweet" name="sentiment_typed_tweet" class="r-text-field a-field__input search__input" placeholder=" " required>
+        <select name='model'>
+          <option value="Camel" >Camel</option>
+          <option value="Logistic Regression">Logistic Regression</option>
+          <option value="Rcnn">Rcnn</option>
+          <option value="Svm">Svm</option>
+      </select>
+        <input type="text" id="sentiment_typed_tweet" name="sentiment_typed_tweet" class="r-text-field a-field__input search__input" placeholder="Enter the tweet here " required>
         <button class="r-button search__button search__clear" type="reset">
           <span class="search__clear-label">Clear the search form</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.971 47.971" class="search__icon search__icon-clear">

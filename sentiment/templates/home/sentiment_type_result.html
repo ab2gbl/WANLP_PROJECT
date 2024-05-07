@@ -62,7 +62,8 @@
           	<br>
           	<br>
             <h1 class="ftco-heading mb-3" data-aos="fade-up" data-aos-delay="500">Sentiment Analysis</h1>
-            <h2 class="h5 ftco-subheading mb-5" data-aos="fade-up"  data-aos-delay="600"><strong>Tweet</strong> - {{ tweet }}</h2>
+            <h2 class="h5 ftco-subheading" data-aos="fade-up"  data-aos-delay="600"><strong>Tweet</strong> - {{ tweet }}</h2>
+            {% if model != '' %} <h3 class="h3 ftco-subheading"> By {{model}} model</h3>{% endif %}
 
 
 
