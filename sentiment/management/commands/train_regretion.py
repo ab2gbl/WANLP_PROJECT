@@ -46,4 +46,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         model, vocab, accuracy = self.create_and_train_logistic_regression_model('./final.csv')
-        self.stdout.write(self.style.SUCCESS(f'Model trained and saved successfully! Accuracy: {accuracy:.2f}'))
+        self.stdout.write(self.style.SUCCESS(f'Logistic Regression Model trained and saved successfully! Accuracy: {accuracy:.2f}'))

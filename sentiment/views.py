@@ -13,6 +13,7 @@ from .camel_model import sentiment_analysis_code as camel
 from .regretion_model import sentiment_analysis_code as regretion
 from .rcnn_model import sentiment_analysis_code as rcnn
 from .svm_model import sentiment_analysis_code as svm
+from .naive_model import sentiment_analysis_code as naive
 def preprocess_text(text):
     text = shakl(text)
     text = alif(text)
@@ -34,6 +35,8 @@ def sentiment_analysis_type(request):
             analyse = rcnn()
         elif model == 'Svm':    
             analyse = svm() 
+        elif model == 'Naive Bayes':    
+            analyse = naive() 
         else :
             analyse = regretion()
         if form.is_valid():
@@ -92,6 +95,8 @@ def search_tweets(request):
         analyse = rcnn()
     elif model == 'Svm':    
         analyse = svm() 
+    elif model == 'Naive Bayes':    
+            analyse = naive() 
     else :
         analyse = regretion()
     
